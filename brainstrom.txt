@@ -1,0 +1,19 @@
+Board class{
+	Cell[][] cells;
+}
+
+Player {
+	name
+	symbol
+}
+
+Game {
+	Board board;
+	
+	playMove(player, position)
+	allowed()
+	won()
+	
+	start()
+	
+}
