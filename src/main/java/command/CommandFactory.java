@@ -20,6 +20,7 @@ public class CommandFactory {
 		this.writer = writer;
 		commands = new HashMap<>();
 
+		commands.put(CreateBoardCommandExecutor.COMMAND_NAME, new CreateBoardCommandExecutor(game, writer));
 	}
 
 	public CommandExecutor getCommand(String commandName) {

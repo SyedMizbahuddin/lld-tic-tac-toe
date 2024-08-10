@@ -27,7 +27,7 @@ public class InteractiveMode extends Mode {
 			InputCommand inputCommand = new InputCommand(line);
 			CommandExecutor commandExecutor = commandFactory.getCommand(inputCommand.getCommandName());
 
-			ValidationCheck valid = commandExecutor.validate(inputCommand.getParams());
+			ValidationCheck valid = commandExecutor.populateAndValidate(inputCommand.getParams());
 			if (!valid.valid()) {
 				throw new InvalidCommandException("Invalid command params : " + valid.message());
 			}

@@ -14,6 +14,7 @@ public class InputCommand {
 	public InputCommand(String line) {
 		params = Arrays.stream(line.trim().split(SPACE))
 				.map(String::trim)
+				.filter(str -> str.length() > 0)
 				.collect(Collectors.toList());
 
 		if (params.size() == 0) {
