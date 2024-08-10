@@ -21,6 +21,10 @@ public class CommandFactory {
 		commands = new HashMap<>();
 
 		commands.put(CreateBoardCommandExecutor.COMMAND_NAME, new CreateBoardCommandExecutor(game, writer));
+		commands.put(ExitCommandExecutor.COMMAND_NAME, new ExitCommandExecutor(game, writer));
+		// Deprecating it
+//		commands.put(StartGameCommandExecutor.COMMAND_NAME, new StartGameCommandExecutor(game, writer));
+		commands.put(PlayMoveCommandExecutor.COMMAND_NAME, new PlayMoveCommandExecutor(game, writer));
 	}
 
 	public CommandExecutor getCommand(String commandName) {

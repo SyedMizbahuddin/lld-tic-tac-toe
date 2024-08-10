@@ -2,20 +2,26 @@ package model;
 
 public class Player {
 	String name;
-	Character symbol;
+	PieceType piece;
+	int id;
 
-	public Player(String name, Character symbol) {
+	public Player(int id, String name, PieceType piece) {
 		super();
+		this.id = id;
 		this.name = name;
-		this.symbol = symbol;
+		this.piece = piece;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Character getSymbol() {
-		return symbol;
+	public PieceType getPiece() {
+		return piece;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

@@ -12,7 +12,7 @@ public class InteractiveMode extends Mode {
 
 	Scanner in;
 
-	InteractiveMode(CommandFactory commandFactory) {
+	public InteractiveMode(CommandFactory commandFactory) {
 		super(commandFactory);
 		in = new Scanner(System.in);
 	}

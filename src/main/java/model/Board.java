@@ -1,15 +1,39 @@
 package model;
 
+import writer.OutputWriter;
+
 public class Board {
-	Cell[][] cells;
+	PieceType[][] cells;
+	int size;
 
 	public Board(int size) {
 		super();
-		this.cells = new Cell[size][size];
+		this.size = size;
+		this.cells = new PieceType[size][size];
 	}
 
-	public void printBoard() {
-		System.out.println("Printing board");
+	public void printBoard(OutputWriter writer) {
+		writer.println("");
+
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (j != 0) {
+					writer.print(" | ");
+				}
+
+				if (cells[i][j] == null) {
+					writer.print(" ");
+				} else {
+					writer.print(cells[i][j].getSymbol() + "");
+				}
+
+			}
+			writer.println("");
+		}
+	}
+
+	public void placeMove(int x, int y, PieceType piece) {
+		cells[x][y] = piece;
 	}
 
 }

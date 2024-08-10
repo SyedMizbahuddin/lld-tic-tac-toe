@@ -21,7 +21,7 @@ public class CreateBoardCommandExecutor extends CommandExecutor {
 
 	@Override
 	public void execute(List<String> params) {
-		game.initializeBoard(boardSize, playersCount, params);
+		game.initializeBoard(boardSize, playersCount, playerNames);
 	}
 
 	@Override
