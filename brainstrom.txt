@@ -13,7 +13,50 @@ Game {
 	playMove(player, position)
 	allowed()
 	won()
-	
-	start()
-	
+	start()	
 }
+
+Input taking strategy is different
+in this tic-tac-toe v/s splitwise
+
+in the input format of splitwise
+we give commands and do not ask 
+for input from user like the case
+of TTT.
+
+We have to come up with some other way
+to do it?
+
+In most (all) of the LLD designs we should 
+not ask for input.
+
+But then how will it look?
+
+
+Ok, so I have seen few YT videos
+Most of them have just hard coded the players
+and board size
+
+
+Few things I have decided
+Take input Mode?
+Commands?
+	-create_board board_size player_size
+	-add_player name1
+	-add_player name2
+	-start_game
+	| | |
+	| | |
+	| | |
+	name1 turn 
+	
+	-create_board board_size player_size player_name1
+	-place_move i j
+	-exit
+	
+	Now it looks fine IG
+	
+
+	
+
+
