@@ -113,6 +113,7 @@ public class Game {
 		} else if (!board.hasMoves()) {
 			// No more moves
 			finished = true;
+			board.printBoard(writer);
 			writer.println("Game tie, No more moves left !!");
 		} else {
 			// Move the player
