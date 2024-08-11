@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+import exception.GameHasFinishedException;
 import exception.GameNotInitializeException;
 import exception.InvalidMoveException;
 import model.Board;
@@ -12,11 +13,12 @@ import model.Player;
 import writer.OutputWriter;
 
 public class Game {
-	Board board;
-	int boardSize;
-	Deque<Player> players;
-	PieceType[] pieces;
-	boolean initialized;
+	private Board board;
+	private int boardSize;
+	private Deque<Player> players;
+	private PieceType[] pieces;
+	private boolean initialized;
+	private boolean finished;
 
 	OutputWriter writer;
 
@@ -44,6 +46,7 @@ public class Game {
 
 		writer.println("CREATED");
 		initialized = true;
+		finished = false;
 
 		printPlayers();
 		start();
@@ -82,22 +85,41 @@ public class Game {
 		}
 	}
 
+	public void isFinished() {
+		if (finished) {
+			throw new GameHasFinishedException("Game has already finished");
+		}
+	}
+
 	public void playMove(int x, int y) {
 		// game started or not?
 		isInitialised();
 
-		// TODO Possible/ invalid
+		// game has finished
+		isFinished();
+
+		// Possible/ invalid
 		if (!board.canPlay(x, y)) {
 			throw new InvalidMoveException("Invalid move");
 		}
 
 		board.placeMove(x, y, currPlayer().getPiece());
-		// TODO Win
 
-		// Move the player
-		players.offerLast(players.pollFirst());
+		if (board.hasWonV1(x, y, currPlayer().getPiece())) {
+			// Win
+			finished = true;
+			board.printBoard(writer);
+			writer.println("Game won by Player " + currPlayer().getId() + " : " + currPlayer().getName());
+		} else if (!board.hasMoves()) {
+			// No more moves
+			finished = true;
+			writer.println("Game tie, No more moves left !!");
+		} else {
+			// Move the player
+			players.offerLast(players.pollFirst());
+			boardStatus();
+		}
 
-		boardStatus();
 	}
 
 	private void addPlayer(String name) {
