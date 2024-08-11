@@ -73,6 +73,7 @@ public class Game {
 
 		board.printBoard(writer);
 		writer.println("Turn of Player " + currPlayer().getId() + " : " + currPlayer().getName());
+		writer.println("");
 	}
 
 	Player currPlayer() {
