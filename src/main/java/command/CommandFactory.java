@@ -25,6 +25,8 @@ public class CommandFactory {
 		// Deprecating it
 //		commands.put(StartGameCommandExecutor.COMMAND_NAME, new StartGameCommandExecutor(game, writer));
 		commands.put(PlayMoveCommandExecutor.COMMAND_NAME, new PlayMoveCommandExecutor(game, writer));
+		commands.put(ListPlayerCommandExecutor.COMMAND_NAME, new ListPlayerCommandExecutor(game, writer));
+		commands.put(BoardStatusCommandExecutor.COMMAND_NAME, new BoardStatusCommandExecutor(game, writer));
 	}
 
 	public CommandExecutor getCommand(String commandName) {

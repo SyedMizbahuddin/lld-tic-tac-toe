@@ -36,4 +36,12 @@ public class Board {
 		cells[x][y] = piece;
 	}
 
+	public boolean canPlay(int x, int y) {
+		return x >= 0
+				&& y >= 0
+				&& x < cells.length
+				&& y < cells.length
+				&& cells[x][y] == null;
+	}
+
 }

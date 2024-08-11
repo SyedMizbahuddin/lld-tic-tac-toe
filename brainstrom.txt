@@ -56,6 +56,11 @@ Commands?
 	
 	Now it looks fine IG
 	
+	take care of commands 
+	play_move not before started
+	play_move not after has finished(won/ no moves left)
+	
+	
 
 	
 

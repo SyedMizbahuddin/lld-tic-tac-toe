@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import exception.GameNotInitializeException;
+import exception.InvalidMoveException;
 import model.Board;
 import model.PieceType;
 import model.Player;
@@ -42,16 +43,31 @@ public class Game {
 		}
 
 		writer.println("CREATED");
+		initialized = true;
+
+		printPlayers();
+		start();
+	}
+
+	public void printPlayers() {
+		// game started or not?
+		isInitialised();
+
 		for (Player player : players) {
 			writer.println(player.getName() + " " + player.getPiece());
 		}
 		writer.println("");
-		start();
 	}
 
-	public void start() {
-		initialized = true;
-		writer.println("Starting game");
+	private void start() {
+
+		writer.println("Starting the game");
+		boardStatus();
+	}
+
+	public void boardStatus() {
+		isInitialised();
+
 		board.printBoard(writer);
 		writer.println("Turn of Player " + currPlayer().getId() + " : " + currPlayer().getName());
 	}
@@ -60,21 +76,28 @@ public class Game {
 		return players.peekFirst();
 	}
 
-	public void playMove(int x, int y) {
-		// game started or not?
+	public void isInitialised() {
 		if (!initialized) {
 			throw new GameNotInitializeException("Game not initialized");
 		}
+	}
 
-		// TODO Possible
+	public void playMove(int x, int y) {
+		// game started or not?
+		isInitialised();
+
+		// TODO Possible/ invalid
+		if (!board.canPlay(x, y)) {
+			throw new InvalidMoveException("Invalid move");
+		}
+
 		board.placeMove(x, y, currPlayer().getPiece());
 		// TODO Win
 
 		// Move the player
 		players.offerLast(players.pollFirst());
 
-		board.printBoard(writer);
-		writer.println("Turn of Player " + currPlayer().getId() + " : " + currPlayer().getName());
+		boardStatus();
 	}
 
 	private void addPlayer(String name) {

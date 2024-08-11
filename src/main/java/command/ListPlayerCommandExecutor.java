@@ -6,19 +6,17 @@ import app.Game;
 import model.ValidationCheck;
 import writer.OutputWriter;
 
-@Deprecated
-public class StartGameCommandExecutor extends CommandExecutor {
+public class ListPlayerCommandExecutor extends CommandExecutor {
 
-	final static String COMMAND_NAME = "start_game";
+	final static String COMMAND_NAME = "list_players";
 
-	public StartGameCommandExecutor(Game game, OutputWriter writer) {
+	public ListPlayerCommandExecutor(Game game, OutputWriter writer) {
 		super(game, writer, COMMAND_NAME);
 	}
 
 	@Override
 	public void execute(List<String> params) {
-		writer.println("Started!!");
-//		game.start();
+		game.printPlayers();
 	}
 
 	@Override
