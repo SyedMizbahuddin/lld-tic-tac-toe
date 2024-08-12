@@ -75,7 +75,7 @@ public class Board {
 
 	public boolean antiDiagMatch(int x, int y, PieceType pieceType) {
 		// in the anti diagonal
-		if (x + y != size) {
+		if (x + y != size - 1) {
 			// not on anti diagonal
 			return false;
 		}
