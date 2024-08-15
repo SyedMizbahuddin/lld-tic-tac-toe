@@ -63,5 +63,29 @@ Commands?
 	
 
 	
+UPD: 
+Writing Test cases
+1. CommandExecutor input is List
+But it should be InputCommand
+
+2. We are updating the parameters
+in the instance yet we are using 
+the factory with only one instance, 
+we should either create new everytime
+or ....... should not initialise
+there. 
 
 
+
+Learning:
+1. use Proxy for validation?
+ So that we do not have to do it,
+ at validation, later when used from somewhere els
+ 
+2. CommandExecutor should take Command
+ Dont usually take primitives as input
+ 
+3. Taking input as a command is good IG
+
+4. Write Unit test cases right after 
+developing a piece. 
