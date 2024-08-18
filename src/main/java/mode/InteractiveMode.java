@@ -25,14 +25,14 @@ public class InteractiveMode extends Mode {
 			line = in.nextLine();
 
 			InputCommand inputCommand = new InputCommand(line);
-			CommandExecutor commandExecutor = commandFactory.getCommand(inputCommand.getCommandName());
+			CommandExecutor commandExecutor = commandFactory.getCommand(inputCommand);
 
-			ValidationCheck valid = commandExecutor.populateAndValidate(inputCommand.getParams());
+			ValidationCheck valid = commandExecutor.populateAndValidate(inputCommand);
 			if (!valid.valid()) {
 				throw new InvalidCommandException("Invalid command params : " + valid.message());
 			}
 
-			commandExecutor.execute(inputCommand.getParams());
+			commandExecutor.execute(inputCommand);
 
 		}
 	}

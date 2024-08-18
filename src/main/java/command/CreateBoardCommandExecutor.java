@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.Game;
+import model.InputCommand;
 import model.ValidationCheck;
 import writer.OutputWriter;
 
@@ -20,12 +21,13 @@ public class CreateBoardCommandExecutor extends CommandExecutor {
 	}
 
 	@Override
-	public void execute(List<String> params) {
+	public void execute(InputCommand inputCommand) {
 		game.initializeBoard(boardSize, playersCount, playerNames);
 	}
 
 	@Override
-	public ValidationCheck populateAndValidate(List<String> params) {
+	public ValidationCheck populateAndValidate(InputCommand inputCommand) {
+		List<String> params = inputCommand.getParams();
 		// Requires at least 2 players
 		if (params.size() < 4) {
 			return invalid("Insufficient Parameters");

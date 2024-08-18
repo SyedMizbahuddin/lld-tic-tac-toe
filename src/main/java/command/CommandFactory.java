@@ -1,10 +1,8 @@
 package command;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import app.Game;
 import exception.CommandNotFoundException;
+import model.InputCommand;
 import writer.OutputWriter;
 
 public class CommandFactory {
@@ -12,32 +10,46 @@ public class CommandFactory {
 	Game game;
 	OutputWriter writer;
 
-	Map<String, CommandExecutor> commands;
-
 	public CommandFactory(Game game, OutputWriter writer) {
 		super();
 		this.game = game;
 		this.writer = writer;
-		commands = new HashMap<>();
 
-		commands.put(CreateBoardCommandExecutor.COMMAND_NAME, new CreateBoardCommandExecutor(game, writer));
-		commands.put(ExitCommandExecutor.COMMAND_NAME, new ExitCommandExecutor(game, writer));
-		// Deprecating it
-//		commands.put(StartGameCommandExecutor.COMMAND_NAME, new StartGameCommandExecutor(game, writer));
-		commands.put(PlayMoveCommandExecutor.COMMAND_NAME, new PlayMoveCommandExecutor(game, writer));
-		commands.put(ListPlayerCommandExecutor.COMMAND_NAME, new ListPlayerCommandExecutor(game, writer));
-		commands.put(BoardStatusCommandExecutor.COMMAND_NAME, new BoardStatusCommandExecutor(game, writer));
 	}
 
-	public CommandExecutor getCommand(String commandName) {
+	public CommandExecutor getCommand(InputCommand inputCommand) {
 
-		if (!validCommand(commandName)) {
-			throw new CommandNotFoundException("Command not found : " + commandName);
+		CommandExecutor commandExecutor = null;
+
+		switch (inputCommand.getCommandName()) {
+
+		case CreateBoardCommandExecutor.COMMAND_NAME:
+			commandExecutor = new CreateBoardCommandExecutor(game, writer);
+			break;
+
+		case ExitCommandExecutor.COMMAND_NAME:
+			commandExecutor = new ExitCommandExecutor(game, writer);
+			break;
+
+		case PlayMoveCommandExecutor.COMMAND_NAME:
+			commandExecutor = new PlayMoveCommandExecutor(game, writer);
+			break;
+
+		case ListPlayerCommandExecutor.COMMAND_NAME:
+			commandExecutor = new ListPlayerCommandExecutor(game, writer);
+			break;
+
+		case BoardStatusCommandExecutor.COMMAND_NAME:
+			commandExecutor = new BoardStatusCommandExecutor(game, writer);
+			break;
+
 		}
-		return commands.get(commandName);
+
+		if (commandExecutor == null) {
+			throw new CommandNotFoundException("Command not found : " + inputCommand.getCommandName());
+		}
+
+		return commandExecutor;
 	}
 
-	boolean validCommand(String commandName) {
-		return commands.containsKey(commandName);
-	}
 }

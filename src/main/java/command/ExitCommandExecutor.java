@@ -3,6 +3,7 @@ package command;
 import java.util.List;
 
 import app.Game;
+import model.InputCommand;
 import model.ValidationCheck;
 import writer.OutputWriter;
 
@@ -15,13 +16,14 @@ public class ExitCommandExecutor extends CommandExecutor {
 	}
 
 	@Override
-	public void execute(List<String> params) {
+	public void execute(InputCommand inputCommand) {
 		writer.println("Bye!!");
 		System.exit(0);
 	}
 
 	@Override
-	public ValidationCheck populateAndValidate(List<String> params) {
+	public ValidationCheck populateAndValidate(InputCommand inputCommand) {
+		List<String> params = inputCommand.getParams();
 		if (params.size() != 0) {
 			return invalid("Incorrect Parameters");
 		}

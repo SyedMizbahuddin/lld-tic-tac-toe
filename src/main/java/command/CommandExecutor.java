@@ -1,8 +1,7 @@
 package command;
 
-import java.util.List;
-
 import app.Game;
+import model.InputCommand;
 import model.ValidationCheck;
 import writer.OutputWriter;
 
@@ -19,9 +18,9 @@ public abstract class CommandExecutor {
 		this.commandName = commandName;
 	}
 
-	public abstract void execute(List<String> params);
+	public abstract void execute(InputCommand inputCommand);
 
-	public abstract ValidationCheck populateAndValidate(List<String> params);
+	public abstract ValidationCheck populateAndValidate(InputCommand inputCommand);
 
 	public ValidationCheck valid() {
 		return new ValidationCheck(true, "");
