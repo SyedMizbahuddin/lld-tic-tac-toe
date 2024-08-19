@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -18,6 +19,7 @@ import model.InputCommand;
 import model.ValidationCheck;
 import writer.OutputWriter;
 
+@DisplayName(value = "create_board Command")
 public class CreateBoardCommandExecutorTest {
 
 	private CreateBoardCommandExecutor commandExecutor;
@@ -32,12 +34,14 @@ public class CreateBoardCommandExecutorTest {
 	}
 
 	@Test
+	@DisplayName(value = "Valid command")
 	public void testValidCommand() {
 		ValidationCheck check = commandExecutor.populateAndValidate(new InputCommand("create_board 3 2 syed1 syed2"));
 		assertTrue(check.valid());
 	}
 
 	@Test
+	@DisplayName(value = "Invalid command")
 	public void testInvalidCommand() {
 		ValidationCheck check1 = commandExecutor.populateAndValidate(new InputCommand("create_board -3 2 syed1 syed2"));
 		assertFalse(check1.valid());
@@ -68,6 +72,7 @@ public class CreateBoardCommandExecutorTest {
 	}
 
 	@Test
+	@DisplayName(value = "run command")
 	public void testCommandExecution() {
 
 		commandExecutor.run(new InputCommand("create_board 3 2 syed1 syed2"));
