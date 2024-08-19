@@ -80,12 +80,18 @@ there.
 Learning:
 1. use Proxy for validation?
  So that we do not have to do it,
- at validation, later when used from somewhere els
+ at validation, later when used from somewhere else
+ (Use Proxy -> GameValidationProxy + Chain Of Responsibilty Validators
+ BoardSizeValidator + PlayerCountValidator + PlayersValidator
+ Can have multiple proxies Just like decorator pattern just delegate it forward.
+ )
  
 2. CommandExecutor should take Command
  Dont usually take primitives as input
  
-3. Taking input as a command is good IG
+3. Taking input as a command is good IG, instead of asking for input.
 
 4. Write Unit test cases right after 
 developing a piece. 
+
+
