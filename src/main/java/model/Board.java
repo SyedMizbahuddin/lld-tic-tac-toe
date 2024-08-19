@@ -39,6 +39,10 @@ public class Board {
 		emptyCells--;
 	}
 
+	public PieceType getPiece(int x, int y) {
+		return cells[x][y];
+	}
+
 	public boolean canPlay(int x, int y) {
 		return x >= 0
 				&& y >= 0
