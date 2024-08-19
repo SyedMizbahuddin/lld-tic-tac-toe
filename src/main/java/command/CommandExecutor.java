@@ -1,6 +1,7 @@
 package command;
 
 import app.Game;
+import exception.InvalidCommandException;
 import model.InputCommand;
 import model.ValidationCheck;
 import writer.OutputWriter;
@@ -32,6 +33,15 @@ public abstract class CommandExecutor {
 
 	public String getCommandName() {
 		return commandName;
+	}
+
+	public void run(InputCommand inputCommand) {
+		ValidationCheck valid = this.populateAndValidate(inputCommand);
+		if (!valid.valid()) {
+			throw new InvalidCommandException("Invalid command params : " + valid.message());
+		}
+
+		this.execute(inputCommand);
 	}
 
 }

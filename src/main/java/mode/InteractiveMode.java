@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 import command.CommandExecutor;
 import command.CommandFactory;
-import exception.InvalidCommandException;
 import model.InputCommand;
-import model.ValidationCheck;
 
 public class InteractiveMode extends Mode {
 
@@ -27,12 +25,7 @@ public class InteractiveMode extends Mode {
 			InputCommand inputCommand = new InputCommand(line);
 			CommandExecutor commandExecutor = commandFactory.getCommand(inputCommand);
 
-			ValidationCheck valid = commandExecutor.populateAndValidate(inputCommand);
-			if (!valid.valid()) {
-				throw new InvalidCommandException("Invalid command params : " + valid.message());
-			}
-
-			commandExecutor.execute(inputCommand);
+			commandExecutor.run(inputCommand);
 
 		}
 	}
